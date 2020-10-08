@@ -18,13 +18,14 @@ export default class PagerDotIndicator extends Component {
         dotStyle: ViewPropTypes.style,
         selectedDotStyle: ViewPropTypes.style,
         hideSingle: PropTypes.bool,
-        accessibilityLabel: PropTypes.func
+        accessible: PropTypes.bool
     }
 
     static defaultProps = {
         pageCount: 0,
         initialPage: 0,
-        hideSingle: false
+        hideSingle: false,
+        accessible: false
     }
 
     state = {
@@ -46,19 +47,16 @@ export default class PagerDotIndicator extends Component {
         let dotsView = [];
         for (let i = 0; i < pageCount; i++) {
             let isSelect = i === this.state.selectedIndex
-            let accessibilityLabel = this.props.accessibilityLabel ? this.props.accessibilityLabel(i) : "";
 
             dotsView.push(
                 <View
-                    accessibilityLabel={accessibilityLabel}
-                    accessibilityState={{ selected: isSelect }}
                     style={[styles.dot, isSelect ? styles.selectDot : null, isSelect ? selectedDotStyle : dotStyle]}
                     key={i}
                 />
             )
         }
         return (
-            <View {...this.props} style={[styles.container, this.props.style]} >
+            <View accessible={this.props.accessible} accessibilityLabel={`Slide ${this.state.selectedIndex} of ${this.props.pageCount}`} {...this.props} style={[styles.container, this.props.style]} >
                 {dotsView}
             </View>
         )
