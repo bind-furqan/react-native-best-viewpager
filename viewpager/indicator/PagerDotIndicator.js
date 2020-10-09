@@ -24,8 +24,7 @@ export default class PagerDotIndicator extends Component {
     static defaultProps = {
         pageCount: 0,
         initialPage: 0,
-        hideSingle: false,
-        accessible: false
+        hideSingle: false
     }
 
     state = {
@@ -56,7 +55,7 @@ export default class PagerDotIndicator extends Component {
             )
         }
         return (
-            <View accessible={this.props.accessible ? true : false} accessibilityLabel={this.props.accessible?.dotViewAccessibilityLabel ? this.props.accessible?.dotViewAccessibilityLabel : ""} {...this.props} style={[styles.container, this.props.style]} >
+            <View accessible={this.props.accessible ? true : false} accessibilityLabel={this.props.accessible?.dotViewAccessibilityLabel?.length > 0 ? this.props.accessible?.dotViewAccessibilityLabel : ""} {...this.props} style={[styles.container, this.props.style]} >
                 {dotsView}
             </View>
         )
