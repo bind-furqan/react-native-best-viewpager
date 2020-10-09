@@ -18,7 +18,6 @@ export default class PagerDotIndicator extends Component {
         dotStyle: ViewPropTypes.style,
         selectedDotStyle: ViewPropTypes.style,
         hideSingle: PropTypes.bool,
-        accessible: PropTypes.object
     }
 
     static defaultProps = {
@@ -55,7 +54,7 @@ export default class PagerDotIndicator extends Component {
             )
         }
         return (
-            <View accessible={this.props.accessible ? true : false} accessibilityLabel={this.props.accessible?.dotViewAccessibilityLabel?.length > 0 ? this.props.accessible?.dotViewAccessibilityLabel : ""} {...this.props} style={[styles.container, this.props.style]} >
+            <View {...this.props} style={[styles.container, this.props.style]} >
                 {dotsView}
             </View>
         )
